@@ -37,13 +37,13 @@ var seattle = {
   },
 
   render: function(){
-    var parentSection = document.getElementById('seattle');
+    var parentSection = document.getElementById('seattle-sales');
 
     var headingSeattle = document.createElement('h2');
     headingSeattle.textContent = this.storeName; //names it Seattle
     parentSection.appendChild(headingSeattle);
 
-    var salesList = document.getElementById('seattle-sales');
+    var salesList = document.getElementById('seattle');
 
     for(var i = 0; i < this.cookiesSoldEachHour.length; i++){
       var liElement = document.createElement('li');
