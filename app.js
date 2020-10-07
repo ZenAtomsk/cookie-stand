@@ -12,7 +12,7 @@ var lima = new CookieStoreExpansion('Lima', 2, 16, 4.6);
 
 ////Constructor////
 
-function CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer, customersPerHour, cookiesSoldEachHour){
+function CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer){
   this.storeName = storeName;
   this.minimumCustomersPerHour = minimumCustomersPerHour;
   this.maximumCustomersPerHour = maximumCustomersPerHour;
