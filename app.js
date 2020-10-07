@@ -10,7 +10,7 @@ var dubai = new CookieStoreExpansion('Dubai', 11, 38, 3.7);
 var paris = new CookieStoreExpansion('Paris', 20, 28, 2.3);
 var lima = new CookieStoreExpansion('Lima', 2, 16, 4.6);
 
-////Construct
+////Constructor////
 
 function CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer, customersPerHour, cookiesSoldEachHour){
   this.storeName = storeName;
@@ -48,6 +48,7 @@ CookieStoreExpansion.prototype.generateCookiesSoldEachHour = function(){
 //will be shared by function and prototype
 var parentElement = document.getElementById('storestable');
 
+
 function generateHeaderRow(){
   var tableRowElement = document.createElement('tr');
   var tableHeaderElement = document.createElement('th');
@@ -67,4 +68,39 @@ function generateHeaderRow(){
   parentElement.appendChild(tableRowElement);
 }
 
+CookieStoreExpansion.prototype.generateRows = function(){
+
+  //creates a tableRow each time the prototype is called
+  var tableRowElement = document.createElement('tr');
+
+  //calls the values
+  this.generateCookiesSoldEachHour();
+
+  //sticks store name before values for the 5 times the prototype is called, muahahaha
+  this.cookiesSoldEachHour.unshift(this.storeName);
+
+  //this runs the text 15 times (included extra to add name with unshift)
+  for(var i=0; i <= hoursOfOperation.length; i++) {
+
+    //created table data in the loop
+    var tabledataElement = document.createElement('td');
+
+    //writes that info into each cell (we snuck names in with unshift)
+    tabledataElement.textContent = `${this.cookiesSoldEachHour[i]}`;
+    tableRowElement.appendChild(tabledataElement);
+  }
+
+  // adds daily totals up
+  var tabledataTwoElement = document.createElement('td');
+  tabledataTwoElement.textContent = `${this.totalCookiesForTheDay}`; //day total for city
+  tableRowElement.appendChild(tabledataTwoElement);
+
+  parentElement.appendChild(tableRowElement);
+};
+
 generateHeaderRow();
+seattle.generateRows();
+tokyo.generateRows();
+dubai.generateRows();
+paris.generateRows();
+lima.generateRows();
