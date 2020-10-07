@@ -1,62 +1,3 @@
-'use strict';
-
-var hoursOfOperation = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:', '6pm:', '7pm:'];
-
-var allStores = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
-
-var seattle = {
-
-  storeName: 'Seattle',
-
-  minimumCustomersPerHour: 23,
-
-  maximumCustomersPerHour: 65,
-
-  averageCookieSalePerCustomer: 6.3,
-
-  totalCookiesForTheDay: 0,
-
-  customersPerHour: [],
-
-  cookiesSoldEachHour: [],
-
-  generateCustomersPerHour: function(){
-    for(var i = 0; i < hoursOfOperation.length; i++){
-      var randomNumber = Math.floor(Math.random() * (this.maximumCustomersPerHour - this.minimumCustomersPerHour + 1) + this.minimumCustomersPerHour);
-      this.customersPerHour.push(randomNumber);
-    }
-  },
-
-  generateCookiesSoldEachHour: function(){
-    seattle.generateCustomersPerHour();
-    for(var i = 0; i < hoursOfOperation.length; i++){
-      var cookiesSoldThisHour = Math.floor(this.customersPerHour[i] * this.averageCookieSalePerCustomer);
-      this.totalCookiesForTheDay += cookiesSoldThisHour;
-      this.cookiesSoldEachHour.push(cookiesSoldThisHour);
-    }
-  },
-
-  render: function(){
-    var parentSection = document.getElementById('seattle-sales');
-
-    var headingSeattle = document.createElement('h2');
-    headingSeattle.textContent = this.storeName; //names it Seattle
-    parentSection.appendChild(headingSeattle);
-
-    var salesList = document.getElementById('seattle');
-
-    for(var i = 0; i < this.cookiesSoldEachHour.length; i++){
-      var liElement = document.createElement('li');
-      liElement.textContent = `${hoursOfOperation[i]}: ${this.cookiesSoldEachHour[i]} cookies`;
-      salesList.appendChild(liElement);
-    }
-  },
-};
-
-seattle.generateCookiesSoldEachHour(); //uses the array of customers to make an array of cookies sold each hour
-seattle.render();
-// console.log(seattle.generateCookiesSoldEachHour());
-
 
 var tokyo = {
 
@@ -110,6 +51,7 @@ var tokyo = {
 tokyo.generateCookiesSoldEachHour(); //uses the array of customers to make an array of cookies sold each hour
 tokyo.render();
 
+console.log(tokyo.generateCustPerHour());
 
 var dubai = {
 
@@ -163,6 +105,7 @@ var dubai = {
 dubai.generateCookiesSoldEachHour(); //uses the array of customers to make an array of cookies sold each hour
 dubai.render();
 
+console.log(dubai.generateCustPerHour());
 
 var paris = {
 
@@ -216,6 +159,7 @@ var paris = {
 paris.generateCookiesSoldEachHour(); //uses the array of customers to make an array of cookies sold each hour
 paris.render();
 
+console.log(paris.generateCustPerHour());
 
 var lima = {
 
@@ -268,3 +212,5 @@ var lima = {
 
 lima.generateCookiesSoldEachHour(); //uses the array of customers to make an array of cookies sold each hour
 lima.render();
+
+console.log(lima.generateCustPerHour());
