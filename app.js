@@ -7,7 +7,7 @@ var allCookieStores = [];
 var seattle = new CookieStoreExpansion('Seattle', 23, 65, 6.3);
 var tokyo = new CookieStoreExpansion('Tokyo', 3, 24, 1.2);
 var dubai = new CookieStoreExpansion('Dubai', 11, 38, 3.7);
-var paris = new CookieStoreExpansion('Paris', 20, 28, 2.3);
+var paris = new CookieStoreExpansion('Paris', 20, 38, 2.3);
 var lima = new CookieStoreExpansion('Lima', 2, 16, 4.6);
 
 ////Constructor////
@@ -80,7 +80,7 @@ CookieStoreExpansion.prototype.generateRows = function(){
   this.cookiesSoldEachHour.unshift(this.storeName);
 
   //this runs the text 15 times (included extra to add name with unshift)
-  for(var i=0; i <= hoursOfOperation.length; i++) {
+  for(var i=0; i < this.cookiesSoldEachHour.length; i++) {
 
     //created table data in the loop
     var tabledataElement = document.createElement('td');
@@ -96,7 +96,42 @@ CookieStoreExpansion.prototype.generateRows = function(){
   tableRowElement.appendChild(tabledataTwoElement);
 
   parentElement.appendChild(tableRowElement);
+
+
 };
+
+//add hourly totals
+function createFooter(){
+
+
+  var parentElement = document.getElementById('stores');
+
+  // creates a tableRow for totals
+  var totalsTableRowElement = document.createElement('tr');
+  //creates a tableDataElement for data to enter the row
+  var tableRowDataElement = document.createElement('td');
+  tableRowDataElement.textContent = 'Totals';
+  totalsTableRowElement.appendChild(tableRowDataElement);
+  var hourlyTotal = 0;
+
+  for(var i = 0; i < hoursOfOperation.length; i++){
+
+
+    for(var j = 0; j < allCookieStores[j].length; j++){
+      console.log(j);
+
+      hourlyTotal += allCookieStores[j].cookiesSoldEachHour[i];
+    }
+    //   perHourTotalsAllStores.push(hourlyTotal);
+    // }
+  }
+  hourlyTotal.unshift('Totals');
+  var tabledataElement = document.createElement('td');
+  tabledataElement.textContent = `${hourlyTotal}`;
+  parentElement.appendChild(tabledataElement);
+}
+
+createFooter();
 
 generateHeaderRow();
 seattle.generateRows();
@@ -104,3 +139,30 @@ tokyo.generateRows();
 dubai.generateRows();
 paris.generateRows();
 lima.generateRows();
+
+
+// SalesLocation.prototype.render = function(){
+//   //make the store name
+//   //create a tr
+//   //create a th
+//   //fill it with content - this.name
+//   // append th to the tr
+
+//   //make a for and loop over cookies sold each hour
+//     //make a td
+//     //fill it with content - data in cookies array[i]
+// }
+
+// function createFooter(){
+
+
+//   var tableRowTotalsElement = document.createElement('tr');
+//   tableRowTotalsElement.textContent = 'totals';
+//   parentElement.appendChild(tableRowTotalsElement);
+
+//   for(var a = 0; a < .totalCookiesForTheDay.length; a++){
+//     for(var b = 0; b < this.cookiesSoldThisHour.length; b++){
+
+//     }
+//   }
+// }
