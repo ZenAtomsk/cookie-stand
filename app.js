@@ -7,6 +7,8 @@ var allCookieStores = [];
 //will be shared by function and prototype
 var parentElement = document.getElementById('storestable');
 
+var formElement = document.getElementById('form');
+
 
 
 ////Constructor////
@@ -42,6 +44,16 @@ CookieStoreExpansion.prototype.generateCookiesSoldEachHour = function(){
 
 function generateRandomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function handleSubmit(event){
+  event.preventDefault();
+  var storeName = event.target.storeName.value;
+  var minimumCustomersPerHour = parseInt(event.target.minimumCustomersPerHour.value);
+  var maximumCustomersPerHour = parseInt(event.target.maximumCustomersPerHour.value);
+  var averageCookieSalePerCustomer = parseInt(event.target.averageCookieSalePerCustomer.value);
+
+  new CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer);
 }
 //////Table//////
 
@@ -91,28 +103,20 @@ CookieStoreExpansion.prototype.render = function(){
 function generateFooterRow(){
   var totalOfTotals = 0;
   var hourlyTotalsArray = [];
-
   var trElement = document.createElement('tr');
-
   var totalPerHour = document.createElement('td');
   totalPerHour.textContent = 'Total Per Hour';
   trElement.appendChild(totalPerHour);
 
   for(var i = 0; i< hoursOfOperation.length; i++){
-
     var hourlyCookieSales = 0;
-
     for(var j = 0; j < allCookieStores.length; j++){
       hourlyCookieSales += allCookieStores[j].cookiesSoldEachHour[i];
-
       totalOfTotals += allCookieStores[j].cookiesSoldEachHour[i];
     }
     hourlyTotalsArray.push(hourlyCookieSales);
-
   }
-
   for(var k = 0; k < hourlyTotalsArray.length; k++){
-
     var tdElement = document.createElement('td');
     tdElement.textContent = hourlyTotalsArray[k];
     trElement.appendChild(tdElement);
@@ -138,5 +142,7 @@ var generator = function (){
   }
   generateFooterRow();
 };
+
+formElement.addEventListener('submit', handleSubmit);
 
 generator();
