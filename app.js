@@ -7,6 +7,9 @@ var allCookieStores = [];
 //will be shared by function and prototype
 var parentElement = document.getElementById('storestable');
 
+var formElement = document.getElementById('form');
+
+
 
 
 ////Constructor////
@@ -36,12 +39,23 @@ CookieStoreExpansion.prototype.generateCookiesSoldEachHour = function(){
     this.totalCookiesForTheDay += cookiesSoldThisHour; //total for each city
     this.cookiesSoldEachHour.push(cookiesSoldThisHour);
   }
-}
+};
 
 //////Helper Function
 
 function generateRandomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function handleSubmit(event){
+  event.preventDefault();
+  var storeName = event.target.storeName.value;
+  var minimumCustomersPerHour = parseInt(event.target.minimumCustomersPerHour.value);
+  var maximumCustomersPerHour = parseInt(event.target.maximumCustomersPerHour.value);
+  var averageCookieSalePerCustomer = parseInt(event.target.averageCookieSalePerCustomer.value);
+  var cookieStoreExpansion
+
+  new CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer);
 }
 //////Table//////
 
@@ -50,7 +64,7 @@ function headerRow(){
   var trElement = document.createElement('tr');
 
   //run for loop to put store hours across the top
-  for(var i = 0; i < hoursOfOperation.length; i++){
+  for(var i = 0; i <= hoursOfOperation.length; i++){
     var thElement = document.createElement('th');
     thElement.textContent = hoursOfOperation[i];
     trElement.appendChild(thElement);
@@ -90,7 +104,7 @@ function generateFooterRow(){
   totalPerHour.textContent = 'Total Per Hour';
   trElement.appendChild(totalPerHour);
 
-  for(var i = 0; i< hoursOfOperation.length; i++){
+  for(var i = 0; i < hoursOfOperation.length; i++){
 
     var hourlyCookieSales = 0;
 
@@ -102,16 +116,13 @@ function generateFooterRow(){
     hourlyTotalsArray.push(hourlyCookieSales);
   }
 
-  console.log('totaloftotals', totalOfTotals);
-  console.log('hourly', hourlyTotalsArray);
-
   for(var k = 0; k < hourlyTotalsArray.length; k++){
 
     var tdElement = document.createElement('td');
     tdElement.textContent = hourlyTotalsArray[k];
     trElement.appendChild(tdElement);
   }
-
+  
   parentElement.appendChild(trElement);
 }
 
@@ -127,5 +138,8 @@ for(var i = 0; i < allCookieStores.length; i++){
   allCookieStores[i].generateCookiesSoldEachHour();
   allCookieStores[i].render();
 }
-
+formElement.addEventListener('submit', handleSubmit);
 generateFooterRow();
+
+
+

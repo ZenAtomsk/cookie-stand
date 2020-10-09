@@ -17,22 +17,35 @@
     </header>
     
     <main>
-      <section id="seattle">
-        
+      <section>
+
+        <form id="form" action="addStore">
+          <fieldset>
+
+            <label>Store Name
+              <input name="storeName" type="text">
+            </label>
+
+            <label>Minimum customers per hour
+              <input name="minimumCustomersPerHour" type="text">
+            </label>
+
+            <label>Maximum customers per hour
+              <input name="maximumCustomersPerHour" type="text">
+            </label>
+
+            <label>Average number of cookies per customer
+              <input name="averageCookieSalePerCustomer" type="text">
+            </label>
+            
+
+          </fieldset>
+
+          <input type="submit"/>
+        </form>
+
       </section>
-      <section id="tokyo">
-       
-      </section>
-      <section id="dubai">
-        
-      </section>
-      <section id="paris">
-        
-      </section>
-      <section id="lima">
-        
-      </section>
-      
+
       <section id="stores">
 
         <table id="storestable"></table>
