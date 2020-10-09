@@ -1,0 +1,33 @@
+#family{
+  width: 300px;
+  float: right;
+}
+
+#frosted {
+  width: 150px;
+  position: fixed;
+  z-index: 0;
+  left: 0%;
+  top: 0%;
+  opacity: 40%;
+}
+
+header{
+  height: 200px;
+  text-align: center;
+}
+
+h1{
+  font-family: 'Dancing Script', cursive;
+  font-size: 100px;
+}
+
+#salmon{
+  width: 400px;
+}
+
+#salmonInfo{
+  width: 450px;
+  text-align: center;
+}
+
