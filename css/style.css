@@ -1,0 +1,26 @@
+#family{
+  width: 300px;
+  float: right;
+};
+
+#frosted {
+  position: fixed;
+  z-index: 0;
+  left: 30%;
+  top: 35%;
+  opacity: 40%;
+}
+
+header{
+  height: 200px;
+  text-align: center;
+};
+
+h1{
+  font-family: 'Dancing Script', cursive;
+  font-size: 100px;
+};
+
+#salmon{
+  width: 400px;
+}
