@@ -53,7 +53,13 @@ function handleSubmit(event){
   var maximumCustomersPerHour = parseInt(event.target.maximumCustomersPerHour.value);
   var averageCookieSalePerCustomer = parseInt(event.target.averageCookieSalePerCustomer.value);
 
-  new CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer);
+  var newStore = new CookieStoreExpansion(storeName, minimumCustomersPerHour, maximumCustomersPerHour, averageCookieSalePerCustomer);
+  newStore.generateCookiesSoldEachHour();
+  parentElement.innerHTML = '';
+  headerRow();
+  generator();
+  // newStore.render();
+  generateFooterRow();
 }
 //////Table//////
 
@@ -135,14 +141,26 @@ new CookieStoreExpansion('Lima', 2, 16, 4.6);
 
 
 var generator = function (){
-  headerRow();
+
   for(var i = 0; i < allCookieStores.length; i++){
     allCookieStores[i].generateCookiesSoldEachHour();
     allCookieStores[i].render();
   }
-  generateFooterRow();
 };
 
 formElement.addEventListener('submit', handleSubmit);
 
+// generator();
+headerRow();
 generator();
+generateFooterRow();
+
+// function addElement(element, content, parent){
+//   var newElement = document.createElement(element);
+//   newElement.textContent = content;
+//   parent.appendChild(newElement);
+
+//   return newElement;
+// }
+
+// addElement('td', dailyGrandTotalAllCities, trChild);
